@@ -3,16 +3,21 @@
 # Get the directory of the script
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
-# Define the path to filename.py
+# Define the path to clock.py
 PYTHON_SCRIPT="$SCRIPT_DIR/main.py"
 
-# Define the command to be added to autostart
-AUTOSTART_COMMAND="@sudo /usr/bin/python3 $PYTHON_SCRIPT"
-
-# Add the command to autostart
-echo "$AUTOSTART_COMMAND" >> ~/.config/lxsession/LXDE-pi/autostart
-
-# Make the Python script executable
+# Give execute permission to clock.py
 chmod +x "$PYTHON_SCRIPT"
 
-echo "Autostart application installed successfully."
+# Define the path to the .desktop file
+DESKTOP_FILE="/etc/xdg/lxsession/LXDE/autostart/raspberry-pi-home-screen.desktop"
+
+# Create the .desktop file
+cat <<EOF | sudo tee "$DESKTOP_FILE" > /dev/null
+[Desktop Entry]
+Type=Application
+Name=raspberry-pi-home-screen
+Exec=$PYTHON_SCRIPT
+EOF
+
+echo "Desktop file created successfully."
