@@ -9,7 +9,7 @@ import config
 
 
 def login(driver, username, password):
-    time.sleep(2)
+    time.sleep(10)
     inputs = driver.find_elements(by=By.TAG_NAME, value="input")
     inputs[0].send_keys(username)
     inputs[1].send_keys(password)
