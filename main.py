@@ -23,20 +23,10 @@ def login(driver, username, password):
 
 
 if __name__ == "__main__":
-    options = webdriver.FirefoxOptions()
-
-    options.binary_location = "/usr/lib/firefox/firefox"
-
-    options.executable_path = "/usr/lib/firefox/geckodriver"
-
-    # driver = webdriver.Firefox(options=options)
-
     driver = webdriver.Firefox(executable_path="/usr/lib/firefox/geckodriver")
 
     driver.fullscreen_window()
 
-    url = config.url
-
-    driver.get(url)
+    driver.get(config.url)
 
     login(driver, config.username, config.password)
